@@ -1,0 +1,18 @@
+[MESSAGES CONTROL]
+disable=bad-whitespace,
+        missing-module-docstring,
+        invalid-name,
+        missing-function-docstring,
+        missing-class-docstring,
+        too-few-public-methods,
+        protected-access,
+        import-outside-toplevel
+
+[TYPECHECK]
+generated-members=
+    btype.btype.Type.name,
+    btype.btype.NumericType._DEFAULT,
+    btype.btype.NumericType._FORMAT,
+    btype.btype.NumericType.name,
+    btype.btype.Array.name,
+    btype.btype.Struct.name
