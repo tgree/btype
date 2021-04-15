@@ -219,6 +219,11 @@ class Struct(Type):
         cls._TYPE_MAP = {f.name : f.typ for f in fields}
         cls._STRUCT   = struct.Struct(cls._get_struct_format())
 
+        if hasattr(cls, '_EXPECTED_SIZE'):
+            if cls._STRUCT.size != cls._EXPECTED_SIZE:
+                raise Exception('Class %s has size %s, expected %s' %
+                                (cls, cls._STRUCT.size, cls._EXPECTED_SIZE))
+
     def __repr__(self):
         attrs = []
         for f in self._FIELDS:
