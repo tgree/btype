@@ -124,6 +124,12 @@ class ArrayElems(list):
     def __repr__(self):
         return self._atype._elems_repr(self)
 
+    def __eq__(self, other):
+        return self._atype._elems_equal(self, other)
+
+    def __ne__(self, other):
+        return not self.__eq__(other)
+
     def __setitem__(self, k, v):
         if not isinstance(k, (int, slice)):
             raise Exception('Arrays only support integer or slice indices '
@@ -154,6 +160,11 @@ class Array(Type):
             v = list(v) + [0]*(self._N - len(v))
         self._validate(v)
         obj._fields[self.name] = ArrayElems(self, v)
+
+    def _elems_equal(self, ae, v):
+        if isinstance(v, bytes):
+            v = list(v) + [0]*(self._N - len(v))
+        return all(v_elem == ae_elem for v_elem, ae_elem in zip(v, ae))
 
     def _elems_repr(self, obj):
         return 'Array(%s, %s)' % (type(self._type).__name__, list.__repr__(obj))
