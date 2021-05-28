@@ -118,6 +118,9 @@ class ArrayElems(list):
         super().__init__(*args, **kwargs)
         self._atype = atype
 
+    def decode(self):
+        return self._atype._elems_decode(self)
+
     def __repr__(self):
         return self._atype._elems_repr(self)
 
@@ -187,6 +190,9 @@ class Array(Type):
 class CString(Array):
     def __init__(self, N):
         super().__init__(uint8_t(), N)
+
+    def _elems_decode(self, obj):
+        return bytes(obj).rstrip(b'\x00').decode()
 
     def _elems_repr(self, obj):
         return repr(bytes(obj).rstrip(b'\x00'))
