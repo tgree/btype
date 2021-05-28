@@ -39,7 +39,8 @@ class NumericType(Type):
         if not isinstance(v, cls._TYPE):  # pylint: disable=W1116
             raise Exception("%s must be type %s (value '%s' is type "
                             "%s)." % (cls.__name__, cls._TYPE, v, type(v)))
-        if not cls._LOWER_LIMIT <= v <= cls._UPPER_LIMIT:
+        if ((not cls._LOWER_LIMIT <= v <= cls._UPPER_LIMIT) and
+                v != float('inf') and v != float('-inf')):
             raise Exception("%s value '%s' is out of range." %
                             (cls.__name__, v))
 
