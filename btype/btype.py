@@ -1,5 +1,6 @@
 # Copyright (c) 2021 by Phase Advanced Sensor Systems, Inc.
 import struct
+import math
 
 
 class Field:
@@ -40,7 +41,8 @@ class NumericType(Type):
             raise Exception("%s must be type %s (value '%s' is type "
                             "%s)." % (cls.__name__, cls._TYPE, v, type(v)))
         if ((not cls._LOWER_LIMIT <= v <= cls._UPPER_LIMIT) and
-                v != float('inf') and v != float('-inf')):
+                v != float('inf') and v != float('-inf') and
+                not math.isnan(v)):
             raise Exception("%s value '%s' is out of range." %
                             (cls.__name__, v))
 
