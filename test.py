@@ -18,3 +18,8 @@ class Foo(btype.Struct):
     a         = btype.Array(btype.uint64_t(), 10)
     hz        = btype.float64_t()
     freq      = btype.float32_t()
+
+
+f  = Foo()
+f2 = Foo.unpack(f.pack())
+assert f.pack() == f2.pack()
