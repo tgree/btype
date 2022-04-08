@@ -192,8 +192,12 @@ class Array(Type):
 
     @classmethod
     def _flatten_r(cls, obj, a):
-        for e in obj:
-            a.append(e)
+        if isinstance(obj._atype._type, NumericType):
+            for e in obj:
+                a.append(e)
+        else:
+            for e in obj:
+                e._flatten_r(e, a)
 
     def _get_struct_format(self):
         if isinstance(self._type, NumericType):
