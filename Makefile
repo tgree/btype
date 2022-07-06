@@ -1,5 +1,5 @@
 PKG := btype
-PKG_VERS := 0.1.3
+PKG_VERS := 0.1.4
 PKG_DEPS := \
 		setup.cfg \
 		setup.py \
