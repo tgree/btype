@@ -173,7 +173,7 @@ class Array(Type):
         return 'Array(%s, %s)' % (type(self._type).__name__, list.__repr__(obj))
 
     def _validate(self, v):
-        if not isinstance(v, list):
+        if not isinstance(v, (list, tuple)):
             raise Exception("Array(%s) cannot be assigned a %s." %
                             (type(self._type).__name__, type(v).__name__))
         if len(v) != self._N:
