@@ -1,12 +1,13 @@
 [MESSAGES CONTROL]
-disable=bad-whitespace,
-        missing-module-docstring,
+disable=missing-module-docstring,
         invalid-name,
         missing-function-docstring,
         missing-class-docstring,
         too-few-public-methods,
         protected-access,
-        import-outside-toplevel
+        import-outside-toplevel,
+        consider-using-f-string,
+        broad-exception-raised
 
 [TYPECHECK]
 generated-members=
