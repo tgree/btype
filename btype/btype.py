@@ -308,3 +308,8 @@ class Struct(Type):
     def unpack(cls, data):
         a = list(cls._STRUCT.unpack(data))
         return cls._make_from_array(a)
+
+    @classmethod
+    def unpack_from(cls, data, offset=0):
+        a = list(cls._STRUCT.unpack_from(data, offset=offset))
+        return cls._make_from_array(a)
