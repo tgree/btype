@@ -68,10 +68,26 @@ class NumericType(Type):
         return self._FORMAT
 
 
+class int8_t(NumericType):
+    _LOWER_LIMIT = -0x80
+    _UPPER_LIMIT = 0x7F
+    _FORMAT      = 'b'
+    _DEFAULT     = 0
+    _TYPE        = int
+
+
 class uint8_t(NumericType):
     _LOWER_LIMIT = 0
     _UPPER_LIMIT = 0xFF
     _FORMAT      = 'B'
+    _DEFAULT     = 0
+    _TYPE        = int
+
+
+class int16_t(NumericType):
+    _LOWER_LIMIT = -0x8000
+    _UPPER_LIMIT = 0x7FFF
+    _FORMAT      = 'h'
     _DEFAULT     = 0
     _TYPE        = int
 
@@ -84,10 +100,26 @@ class uint16_t(NumericType):
     _TYPE        = int
 
 
+class int32_t(NumericType):
+    _LOWER_LIMIT = -0x80000000
+    _UPPER_LIMIT = 0x7FFFFFFF
+    _FORMAT      = 'i'
+    _DEFAULT     = 0
+    _TYPE        = int
+
+
 class uint32_t(NumericType):
     _LOWER_LIMIT = 0
     _UPPER_LIMIT = 0xFFFFFFFF
     _FORMAT      = 'I'
+    _DEFAULT     = 0
+    _TYPE        = int
+
+
+class int64_t(NumericType):
+    _LOWER_LIMIT = -0x8000000000000000
+    _UPPER_LIMIT = 0x7FFFFFFFFFFFFFFF
+    _FORMAT      = 'q'
     _DEFAULT     = 0
     _TYPE        = int
 
