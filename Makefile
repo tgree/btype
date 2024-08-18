@@ -4,6 +4,7 @@ PKG_DEPS := \
 		setup.cfg \
 		setup.py \
 		$(PKG)/*.py
+PYTHON := python3
 
 .PHONY: all
 all: wheel
@@ -36,6 +37,12 @@ install: wheel
 .PHONY: uninstall
 uninstall:
 	sudo pip3 uninstall $(PKG)
+
+.PHONY: publish
+publish: all
+	$(PYTHON) -m twine upload \
+		dist/$(PKG)-$(PKG_VERS)-py3-none-any.whl \
+		dist/$(PKG)-$(PKG_VERS).tar.gz
 
 dist/$(PKG)-$(PKG_VERS)-py3-none-any.whl: $(PKG_DEPS) Makefile
 	python3 setup.py --quiet sdist bdist_wheel
