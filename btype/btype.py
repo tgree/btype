@@ -266,6 +266,9 @@ class Struct(Type):
     def __init_subclass__(cls, **kwargs):
         super().__init_subclass__(**kwargs)
 
+        if hasattr(cls, '_STRUCT'):
+            return
+
         fields = []
         for k, v in vars(cls).items():
             if isinstance(v, Type):
