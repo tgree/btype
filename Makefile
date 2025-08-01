@@ -1,5 +1,5 @@
 PKG := btype
-PKG_VERS := 0.1.6
+PKG_VERS := 0.1.7
 PKG_DEPS := \
 		setup.cfg \
 		setup.py \
@@ -31,8 +31,8 @@ wheel: dist/$(PKG)-$(PKG_VERS)-py3-none-any.whl
 
 .PHONY: install
 install: wheel
-	sudo pip3 uninstall -y $(PKG)
-	sudo pip3 install dist/$(PKG)-$(PKG_VERS)-py3-none-any.whl
+	sudo pip3 uninstall -y $(PKG) --break-system-packages
+	sudo pip3 install dist/$(PKG)-$(PKG_VERS)-py3-none-any.whl --break-system-packages
 
 .PHONY: uninstall
 uninstall:

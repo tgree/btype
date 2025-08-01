@@ -263,7 +263,7 @@ class Struct(Type):
             raise Exception('Unexpected kwargs: %s' % kwargs)
 
     @classmethod
-    def __init_subclass__(cls, **kwargs):
+    def __init_subclass__(cls, endian='@', **kwargs):
         super().__init_subclass__(**kwargs)
 
         if hasattr(cls, '_STRUCT'):
@@ -276,7 +276,7 @@ class Struct(Type):
 
         cls._FIELDS   = tuple(fields)
         cls._TYPE_MAP = {f.name : f.typ for f in fields}
-        cls._STRUCT   = struct.Struct(cls._get_struct_format())
+        cls._STRUCT   = struct.Struct(endian + cls._get_struct_format())
 
         if hasattr(cls, '_EXPECTED_SIZE'):
             if cls._STRUCT.size != cls._EXPECTED_SIZE:

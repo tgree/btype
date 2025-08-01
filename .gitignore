@@ -4,3 +4,4 @@ dist/
 *.egg-info/
 !/etc/udev/rules.d
 build/
+.DS_Store
